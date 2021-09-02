@@ -1,42 +1,20 @@
-import { INCREMENT, DECREMENT, CHANGE_THEME, ENABLE_BUTTONS, DISABLE_BUTTONS } from "./types"
+import { INC, DEC, SYNC, CHANGE_THEME } from "./types"
 
-export function increment() {
+export function inc() {
     return {
-        type: INCREMENT
+        type: INC
     }
 }
 
-export function decrement() {
+export function dec() {
     return {
-        type: DECREMENT
-    }
-}
-
-export function enableButtons() {
-    return {
-        type: ENABLE_BUTTONS
-    }
-}
-
-export function disableButtons() {
-    return {
-        type: DISABLE_BUTTONS
-    }
-}
-
-export function asyncIncrement() {
-    return function(dispatch) {   
-        dispatch(disableButtons())
-        setTimeout(() => {
-            dispatch(enableButtons())
-            dispatch(increment())
-        }, 2000)
+        type: DEC
     }
 }
 
 export function changeTheme(newTheme) {
     return {
-        type: CHANGE_THEME, 
-        payload: newTheme
+        type: CHANGE_THEME,
+        data: newTheme
     }
 }
