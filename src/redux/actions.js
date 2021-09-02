@@ -1,20 +1,20 @@
-import { INC, DEC, SYNC, CHANGE_THEME } from "./types"
+import { INC, DEC, CHE } from './types'
 
-export function inc() {
+export function inc () {
     return {
         type: INC
     }
 }
 
-export function dec() {
+export function dec () {
     return {
         type: DEC
     }
 }
 
-export function changeTheme(newTheme) {
+export function che (theme) {
     return {
-        type: CHANGE_THEME,
-        data: newTheme
+        type: CHE,
+        dataTheme: theme
     }
 }

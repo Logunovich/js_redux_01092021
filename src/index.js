@@ -1,36 +1,40 @@
 import './styles.css';
 import { createStore } from 'redux';
-import { rootReducer } from './redux/rootReducer';
-import { inc, dec, changeTheme } from './redux/actions';
+import { inc, dec, che } from './redux/actions';
+import { rootReduc } from './redux/rootReducer'
 
-const addBtn = document.getElementById('add'),
+const counter = document.getElementById('counter'),
+      addBtn = document.getElementById('add'),
       subBtn = document.getElementById('sub'),
       asyncBtn = document.getElementById('async'),
-      themeBtn = document.getElementById('theme'),
-      counterBox = document.getElementById('counter');
+      themeBtn = document.getElementById('theme');
 
-const store = createStore(rootReducer, 0)
+const myStore = createStore(rootReduc, 0) 
 
 addBtn.addEventListener('click', () => {
-    store.dispatch(inc())
+    myStore.dispatch(inc())
 })
 
 subBtn.addEventListener('click', () => {
-    store.dispatch(dec())
+    myStore.dispatch(dec())
 })
+
 
 themeBtn.addEventListener('click', () => {
-    const newTheme = document.body.classList.contains('light')
-    ? 'dark'
-    : 'light'
-    store.dispatch(changeTheme(newTheme))
+    // const theme = document.body.classList.contains('light')
+    // ? 'dark'
+    // : 'light'
+
+    const theme = document.body.classList.contains('dark') 
+    ? 'light'
+    : 'dark'
+    console.log(theme)
+    myStore.dispatch(che(theme))
 })
 
+myStore.subscribe(() => {
+    const state = myStore.getState()
 
-store.subscribe(() => {
-    const state = store.getState()
-    counterBox.textContent = state.count;
-    document.body.className = state.theme.theme;
+    counter.textContent = state.count;
+    document.body.className = state.theme.theme
 })
-
-store.dispatch({type: '__IN__'});
